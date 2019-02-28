@@ -18,39 +18,13 @@ public class MainActivity extends AppCompatActivity {
     private final static String PARAM_IS_VIDEO_CALL = "isVideoCall";
     private final static String TAG = "SipConfigurator";
 
-    private DataOutputStream suStdin = null;
-    private Process su = null;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //initRoot();
+
         sendSipConfigs();
     }
-
-    private void initRoot() {
-        try {
-            su = Runtime.getRuntime().exec("su");
-            suStdin = new DataOutputStream(su.getOutputStream());
-            suStdin.writeBytes("echo\n");
-            suStdin.flush();
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
-
-    }
-
-    public void suExec(String cmd) {
-        try {
-            suStdin.writeBytes(cmd + "\n");
-            suStdin.flush();
-        } catch (Exception e) {
-            Log.d(TAG, "su failed with command '" + cmd + "'", e);
-        }
-    }
-
 
     private void sendSipConfigs() {
         String username = getApplicationContext().getString(R.string.account_login);
@@ -69,9 +43,4 @@ public class MainActivity extends AppCompatActivity {
 
         sendBroadcast(intent);
     }
-
-//    public void onClick(View view) {
-//        String number = ((EditText)findViewById(R.id.sipAccountToCall)).getText().toString();
-//        suExec("am start -a android.intent.action.CALL -d sip:" + number);
-//    }
 }
