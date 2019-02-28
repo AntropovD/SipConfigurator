@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_login">1</string>
+    <string name="account_password">zxcvbn</string>
+    <string name="server_domain">192.168.1.4:5169</string>
+    <string name="server_transport">Tcp</string>
+    <string name="initialize_video_call">true</string>
+</resources>
